@@ -4,7 +4,7 @@ from collections import defaultdict
 import folium
 from fastkml import kml
 
-kmz = zipfile.ZipFile("./not_bike_paths")
+kmz = zipfile.ZipFile("./nanaimo_transportation.kmz")
 kml_content = kmz.open("doc.kml", "r").read()
 
 k = kml.KML()
@@ -33,7 +33,7 @@ for i, (name, name_objects) in enumerate(objects.items()):
   if name.endswith('LineString'):
     for obj in name_objects:
       locations = [(lat, lon) for (lon, lat) in obj]
-      folium.PolyLine(
+      folium.PolyLine( #https://python-visualization.github.io/folium/latest/user_guide/vector_layers/polyline.html
         locations=locations, 
         color=colors[i%4],
         tooltip=name,
@@ -42,7 +42,7 @@ for i, (name, name_objects) in enumerate(objects.items()):
       ).add_to(mapit)      
   elif name.endswith('Point'):
     for obj in name_objects:
-      folium.CircleMarker(
+      folium.CircleMarker( #https://python-visualization.github.io/folium/latest/user_guide/vector_layers/circle_and_circle_marker.html
             location=(obj[0], obj[1]),
             radius=3,
             tooltip=name,
