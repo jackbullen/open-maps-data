@@ -12,9 +12,13 @@ Opens a compressed KML file (KMZ) with the Python standard library [zipfile](htt
 
 KML files contain structured geographic information. This script prints out the various documents and folders in a KML file along with the number of different fastkml data objects present in each directory.
 
+### [bikemap.py](./bikemap.py)
+
+The `nanaimo_transportation.kmz` file contains a folder called BIKE_ROUTES. In this folder are several [pygeoif](https://github.com/cleder/pygeoif) [GeometryCollection objects](https://github.com/cleder/pygeoif/blob/develop/pygeoif/geometry.py#L984) (likely the kml does not contain GeometryCollection objects, this is just how it is parsed by this library, since in their documentation they state that GeometryCollection type is non-standard in GIS applications). Each of these collections contains two items: a Point and a LineString. Not sure what the points represent since the routes are just lines.
+
 ## Data
 
-### [nanaimo_transportation](./nanaimo_transportation.kmz)
+### [nanaimo_transportation.kmz](./nanaimo_transportation.kmz)
 Source: [nanaimo.ca/open-data-catalogue](https://www.nanaimo.ca/open-data-catalogue)
 
 There are a few items at the above website that provide this file (BikeRoutes and Intersections being two). It contains several folders

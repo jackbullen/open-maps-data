@@ -14,14 +14,14 @@ k.from_string(kml_content)
 objects = defaultdict(list)
 
 for document in k.features():
-    for folder in document.features():
-        for placemark in folder.features():
-            if placemark.geometry:
-                if placemark.geometry.geom_type == 'LineString':
-                    objects[placemark.name+'LineString'].append(list(
-                        [(pt[0], pt[1]) for pt in placemark.geometry.coords]))
-                elif placemark.geometry.geom_type == 'Point':
-                    objects[placemark.name+'Point'].append((placemark.geometry.y, placemark.geometry.x))
+  for folder in document.features():
+    for placemark in folder.features():
+      if placemark.geometry:
+        if placemark.geometry.geom_type == 'LineString':
+          objects[placemark.name+'LineString'].append(list(
+                  [(pt[0], pt[1]) for pt in placemark.geometry.coords]))
+        elif placemark.geometry.geom_type == 'Point':
+          objects[placemark.name+'Point'].append((placemark.geometry.y, placemark.geometry.x))
 
 print(objects.keys())
 
@@ -52,4 +52,4 @@ for i, (name, name_objects) in enumerate(objects.items()):
             fill_opacity=0.6
         ).add_to(mapit)
 
-mapit.save('index.html')
+mapit.save('transportation.html')
